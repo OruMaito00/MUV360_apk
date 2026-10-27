@@ -22,7 +22,19 @@ Qui si pubblica solo l'APK. Gli APK si scaricano dalla pagina [Releases](../../r
    adb push film.mp4 /sdcard/MUV/film.mp4
    ```
 
-   Il Film deve essere un video equirettangolare mono **H.265/HEVC, 5760×2880, 30 fps, audio AAC stereo**. Se manca, l'app mostra "Film non trovato: /sdcard/MUV/film.mp4".
+   Il Film deve essere un video equirettangolare mono **H.265/HEVC Main 8 bit, 5760×2880, 30 fps, tag `hvc1`, audio AAC stereo**, circa 50 Mb/s di media (picchi fino a 80 Mb/s), circa 2 GB per 5 minuti. Se manca, l'app mostra "Film non trovato: /sdcard/MUV/film.mp4".
+
+   Anche copia e incolla da Esplora file va bene (`Quest 3S > Archivio condiviso interno > MUV`), purché il file si chiami esattamente `film.mp4`.
+
+   Il lettore video di sistema del visore mostra questo formato nero: per controllare il Film usa l'app.
+
+4. Al primo avvio accetta il permesso di accesso ai video, che serve all'app per leggere il Film. In alternativa:
+
+   ```
+   adb shell pm grant io.ispira.muv360 android.permission.READ_MEDIA_VIDEO
+   ```
+
+5. Accendi i controller prima di avviare l'app: il visore lo richiede.
 
 Gli aggiornamenti si installano sopra la versione precedente (`adb install -r`) perché tutti gli APK sono firmati con la stessa chiave e hanno un `versionCode` crescente.
 
